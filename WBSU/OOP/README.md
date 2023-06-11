@@ -25,8 +25,8 @@
 |done|21|WAP to show string handling using at least 5 string operating.|
 |done|22|WAP to demonstrate the INet address.|
 |done|23|WAP to demonstrate URL meta information.|
-|x|24|WAP to draw Indian flag using applet.|
-|x|25|WAP to draw Ashoka Chakra using applet.|
+|done|24|WAP to draw Indian flag using applet.|
+|done|25|WAP to draw Ashoka Chakra using applet.|
 ||26|WAP to draw hour-glass using applet.|
 |done|27|WAP to draw digital clock using applet.|
 |DEBUG|28|WAP to draw analog clock using applet.|
@@ -50,4 +50,4 @@
 ||46|WAP for demonstrate the text fill.|
 ||47|WAP for border layout. ( Grid ).|
 ||48|WAP for demonstrate a dailouge box.|
-||49|WAP for impoting the image for the stoned location and also attach the sound clip.||
+||49|WAP for impoting the image for the stoned location and also attach the sound clip.|
