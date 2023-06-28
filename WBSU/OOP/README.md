@@ -19,7 +19,7 @@
 |done|15|Write a program to count number of vowles in a given string.|
 |done|16|Write a program to take input from keyboard and write them in a file.|
 |done|17|Write a program to count character in a file.|
-||18|Write a program for native programming.|
+|done|18|Write a program for native programming.|
 |done|19|WAP to copy a content from A.txt to B.txt.|
 |done|20|WAP to design a banner using applet.|
 |done|21|WAP to show string handling using at least 5 string operating.|
@@ -34,9 +34,9 @@
 |done|30|WAP to draw night view using applet.|
 ||31|WAP to identify font size and style using java.|
 ||32|WAP to input an audio clicp and display.|
-||33|WAP to implement mouse events.|
-||34|WAP to display mouse motion and cardinality.|
-||35|WAP to implement key-board events.|
+|done|33|WAP to implement mouse events.|
+|done|34|WAP to display mouse motion and cardinality.|
+|done|35|WAP to implement key-board events.|
 ||36|WAP to implement simple calculator using event.|
 |done|37|WAP to draw concentric circle of different colors.|
 ||38|WAP for create the child frame.|
