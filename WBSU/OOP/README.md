@@ -42,12 +42,12 @@
 ||38|WAP for create the child frame.|
 ||39|window form within an applet.|
 ||40|WAP to handle mouse events in both child and applet window.|
-||41|WAP for demonstrate the level.|
-||42|WAP for demonstrate the button.|
-||43|WAP for demonstrate the checkbox and checkbox group.|
-||44|WAP for demonstrate choice list.|
-||45|WAP for demonstrate scroll bar.|
-||46|WAP for demonstrate the text fill.|
+|done|41|WAP for demonstrate the level.|
+|done|42|WAP for demonstrate the button.|
+|done|43|WAP for demonstrate the checkbox and checkbox group.|
+|done|44|WAP for demonstrate choice list.|
+|done|45|WAP for demonstrate scroll bar.|
+|done|46|WAP for demonstrate the text fill.|
 ||47|WAP for border layout. ( Grid ).|
 ||48|WAP for demonstrate a dailouge box.|
 ||49|WAP for impoting the image for the stoned location and also attach the sound clip.|
