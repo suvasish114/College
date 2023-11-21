@@ -1,0 +1,693 @@
+# CREATE TABLE S
+CREATE TABLE S(
+	SNO VARCHAR(15) PRIMARY KEY NOT NULL,
+	SNAME VARCHAR(45) NOT NULL,
+	STATUS VARCHAR(45) NOT NULL,
+	CITY VARCHAR(45) NOT NULL
+);
+
+# CREATE TABLE P
+CREATE TABLE P(
+	PNO VARCHAR(15) PRIMARY KEY NOT NULL,
+	PNAME VARCHAR(45) NOT NULL,
+	COLOR VARCHAR(45) NOT NULL,
+	WEIGHT INT NOT NULL,
+	CITY VARCHAR(45) NOT NULL
+);
+
+# CREATE TABLE J
+CREATE TABLE J(
+	JNO VARCHAR(15) PRIMARY KEY NOT NULL,
+	JNAME VARCHAR(45) NOT NULL,
+	CITY VARCHAR(45) NOT NULL
+);
+
+# CREATE TABLE SPJ
+CREATE TABLE SPJ(
+	SNO VARCHAR(15) NOT NULL,
+	PNO VARCHAR(15) NOT NULL,
+	JNO VARCHAR(15) NOT NULL,
+	QTY INT NOT NULL,
+	PRIMARY KEY(SNO,PNO,JNO),
+	FOREIGN KEY(SNO) REFERENCES S(SNO),
+	FOREIGN KEY(PNO) REFERENCES P(PNO),
+	FOREIGN KEY(JNO) REFERENCES J(JNO)
+);
+
+# INSERT VALUES INTO TABLE S
+INSERT INTO S VALUES
+("S1","Smith",20,"London"),
+("S2","Jones",10,"Paris"),
+("S3","Blake",30,"Paris"),
+("S4","Clark",20,"London"),
+("S5","Adams",30,"Athens");
+
+# SHOW DATA IN TABLE S
+SELECT * FROM S;
+
++-----+-------+--------+--------+
+| SNO | SNAME | STATUS | CITY   |
++-----+-------+--------+--------+
+| S1  | Smith |     20 | London |
+| S2  | Jones |     10 | Paris  |
+| S3  | Blake |     30 | Paris  |
+| S4  | Clark |     20 | London |
+| S5  | Adams |     30 | Athens |
++-----+-------+--------+--------+
+
+# INSERT VALUES INTO TABLE P
+INSERT INTO P VALUES
+("P1","Nut","Red",12,"London"),
+("P2","Bolt","Green",17,"Paris"),
+("P3","Screw","Blue",17,"Rome"),
+("P4","Screw","Red",14,"London"),
+("P5","Cam","Blue",12,"Paris"),
+("p6","Cog","Red",19,"London");
+
+# SHOW DATA IN TABLE P
+SELECT * FROM P;
+
++-----+-------+-------+--------+--------+
+| PNO | PNAME | COLOR | WEIGHT | CITY   |
++-----+-------+-------+--------+--------+
+| P1  | Nut   | Red   |     12 | London |
+| P2  | Bolt  | Green |     17 | Paris  |
+| P3  | Screw | Blue  |     17 | Rome   |
+| P4  | Screw | Red   |     14 | London |
+| P5  | Cam   | Blue  |     12 | Paris  |
+| P6  | Cog   | Red   |     19 | London |
++-----+-------+-------+--------+--------+
+
+# INSERT VALUES INTO TABLE J
+INSERT INTO J VALUES
+("J1","Sorter","Paris"),
+("J2","Display","Rome"),
+("J3","OCR","Athens"),
+("J4","Console","Athens"),
+("J5","RAID","London"),
+("J6","EDS","Oslo"),
+("J7","TRNO","London");
+
+# SHOW DATA IN TABLE J
+SELECT * FROM J;
+
++-----+---------+--------+
+| JNO | JNAME   | CITY   |
++-----+---------+--------+
+| J1  | Sorter  | Paris  |
+| J2  | Display | Rome   |
+| J3  | OCR     | Athens |
+| J4  | Console | Athens |
+| J5  | RAID    | London |
+| J6  | EDS     | Oslo   |
+| J7  | ARP     | London |
++-----+---------+--------+
+
+# INSERT VALUES INTO TABLE SPJ
+INSERT INTO SPJ VALUES
+("S1","P1","J1",200),
+("S1","P1","J4",700),
+("S2","P3","J1",400),
+("S2","P3","J2",200),
+("S2","P3","J3",200),
+("S2","P3","J4",500),
+("S2","P3","J5",600),
+("S2","P3","J6",400),
+("S2","P3","J7",800),
+("S2","P5","J2",100),
+("S3","P3","J1",200),
+("S3","P4","J2",500),
+("S4","P6","J3",300),
+("S4","P6","J7",300),
+("S5","P2","J2",200),
+("S5","P2","J4",100),
+("S5","P5","J5",500),
+("S5","P5","J7",100),
+("S5","P6","J2",200),
+("S5","P1","J4",100),
+("S5","P3","J4",200),
+("S5","P4","J4",800),
+("S5","P5","J4",400),
+("S5","P6","J4",500);
+
+# SHOW DATA IN TABLE SPJ
+SELECT * FROM SPJ;
+
++-----+-----+-----+-----+
+| SNO | PNO | JNO | QTY |
++-----+-----+-----+-----+
+| S1  | P1  | J1  | 200 |
+| S1  | P1  | J4  | 700 |
+| S2  | P3  | J1  | 400 |
+| S2  | P3  | J2  | 200 |
+| S2  | P3  | J3  | 200 |
+| S2  | P3  | J4  | 500 |
+| S2  | P3  | J5  | 600 |
+| S2  | P3  | J6  | 400 |
+| S2  | P3  | J7  | 800 |
+| S2  | P5  | J2  | 100 |
+| S3  | P3  | J1  | 200 |
+| S3  | P4  | J2  | 500 |
+| S4  | P6  | J3  | 300 |
+| S4  | P6  | J7  | 300 |
+| S5  | P1  | J4  | 100 |
+| S5  | P2  | J2  | 200 |
+| S5  | P2  | J4  | 100 |
+| S5  | P3  | J4  | 200 |
+| S5  | P4  | J4  | 800 |
+| S5  | P5  | J4  | 400 |
+| S5  | P5  | J5  | 500 |
+| S5  | P5  | J7  | 100 |
+| S5  | P6  | J2  | 200 |
+| S5  | P6  | J4  | 500 |
++-----+-----+-----+-----+
+
+# Q1
+SELECT * FROM J;
+
++-----+---------+--------+
+| JNO | JNAME   | CITY   |
++-----+---------+--------+
+| J1  | Sorter  | Paris  |
+| J2  | Display | Rome   |
+| J3  | OCR     | Athens |
+| J4  | Console | Athens |
+| J5  | RAID    | London |
+| J6  | EDS     | Oslo   |
+| J7  | ARP     | London |
++-----+---------+--------+
+
+# Q2
+SELECT * FROM J WHERE CITY="London";
+
++-----+-------+--------+
+| JNO | JNAME | CITY   |
++-----+-------+--------+
+| J5  | RAID  | London |
+| J7  | ARP   | London |
++-----+-------+--------+
+
+# Q3
+SELECT SNO, SNAME FROM S WHERE SNO IN
+(SELECT SNO FROM SPJ WHERE JNO="J1");
+
++-----+-------+
+| SNO | SNAME |
++-----+-------+
+| S1  | Smith |
+| S2  | Jones |
+| S3  | Blake |
++-----+-------+
+
+# Q4
+SELECT * FROM SPJ WHERE QTY > 300 AND QTY < 750;
+
++-----+-----+-----+-----+
+| SNO | PNO | JNO | QTY |
++-----+-----+-----+-----+
+| S1  | P1  | J4  | 700 |
+| S2  | P3  | J1  | 400 |
+| S2  | P3  | J4  | 500 |
+| S2  | P3  | J5  | 600 |
+| S2  | P3  | J6  | 400 |
+| S3  | P4  | J2  | 500 |
+| S5  | P5  | J4  | 400 |
+| S5  | P5  | J5  | 500 |
+| S5  | P6  | J4  | 500 |
++-----+-----+-----+-----+
+
+# Q5
+SELECT DISTINCT COLOR, CITY FROM P
+ORDER BY COLOR;
+
++-------+--------+
+| COLOR | CITY   |
++-------+--------+
+| Blue  | Paris  |
+| Blue  | Rome   |
+| Green | Paris  |
+| Red   | London |
++-------+--------+
+
+# Q6
+SELECT SPJ.SNO,S.CITY,SPJ.PNO,P.CITY,SPJ.JNO,J.CITY FROM SPJ
+JOIN S ON SPJ.SNO = S.SNO
+JOIN P ON SPJ.PNO = P.PNO
+JOIN J ON SPJ.JNO = J.JNO
+WHERE S.CITY = P.CITY AND
+S.CITY = J.CITY AND
+P.CITY = J.CITY;
+
++-----+--------+-----+--------+-----+--------+
+| SNO | CITY   | PNO | CITY   | JNO | CITY   |
++-----+--------+-----+--------+-----+--------+
+| S4  | London | P6  | London | J7  | London |
++-----+--------+-----+--------+-----+--------+
+
+# Q7
+SELECT SPJ.SNO,S.CITY,SPJ.PNO,P.CITY,SPJ.JNO,J.CITY FROM SPJ
+JOIN S ON SPJ.SNO = S.SNO
+JOIN P ON SPJ.PNO = P.PNO
+JOIN J ON SPJ.JNO = J.JNO
+WHERE S.CITY <> P.CITY AND
+S.CITY <> J.CITY AND
+P.CITY <> J.CITY;
+
++-----+--------+-----+--------+-----+--------+
+| SNO | CITY   | PNO | CITY   | JNO | CITY   |
++-----+--------+-----+--------+-----+--------+
+| S2  | Paris  | P3  | Rome   | J3  | Athens |
+| S2  | Paris  | P3  | Rome   | J4  | Athens |
+| S2  | Paris  | P3  | Rome   | J5  | London |
+| S2  | Paris  | P3  | Rome   | J6  | Oslo   |
+| S2  | Paris  | P3  | Rome   | J7  | London |
+| S3  | Paris  | P4  | London | J2  | Rome   |
+| S5  | Athens | P2  | Paris  | J2  | Rome   |
+| S5  | Athens | P5  | Paris  | J5  | London |
+| S5  | Athens | P5  | Paris  | J7  | London |
+| S5  | Athens | P6  | London | J2  | Rome   |
++-----+--------+-----+--------+-----+--------+
+
+# Q8
+SELECT SPJ.SNO,S.CITY,SPJ.PNO,P.CITY,SPJ.JNO,J.CITY FROM SPJ
+JOIN S ON SPJ.SNO = S.SNO
+JOIN P ON SPJ.PNO = P.PNO
+JOIN J ON SPJ.JNO = J.JNO
+WHERE S.CITY <> P.CITY
+OR S.CITY <> J.CITY
+OR P.CITY <> J.CITY;
+
++-----+--------+-----+--------+-----+--------+
+| SNO | CITY   | PNO | CITY   | JNO | CITY   |
++-----+--------+-----+--------+-----+--------+
+| S1  | London | P1  | London | J1  | Paris  |
+| S1  | London | P1  | London | J4  | Athens |
+| S2  | Paris  | P3  | Rome   | J1  | Paris  |
+| S2  | Paris  | P3  | Rome   | J2  | Rome   |
+| S2  | Paris  | P3  | Rome   | J3  | Athens |
+| S2  | Paris  | P3  | Rome   | J4  | Athens |
+| S2  | Paris  | P3  | Rome   | J5  | London |
+| S2  | Paris  | P3  | Rome   | J6  | Oslo   |
+| S2  | Paris  | P3  | Rome   | J7  | London |
+| S2  | Paris  | P5  | Paris  | J2  | Rome   |
+| S3  | Paris  | P3  | Rome   | J1  | Paris  |
+| S3  | Paris  | P4  | London | J2  | Rome   |
+| S4  | London | P6  | London | J3  | Athens |
+| S5  | Athens | P1  | London | J4  | Athens |
+| S5  | Athens | P2  | Paris  | J2  | Rome   |
+| S5  | Athens | P2  | Paris  | J4  | Athens |
+| S5  | Athens | P3  | Rome   | J4  | Athens |
+| S5  | Athens | P4  | London | J4  | Athens |
+| S5  | Athens | P5  | Paris  | J4  | Athens |
+| S5  | Athens | P5  | Paris  | J5  | London |
+| S5  | Athens | P5  | Paris  | J7  | London |
+| S5  | Athens | P6  | London | J2  | Rome   |
+| S5  | Athens | P6  | London | J4  | Athens |
++-----+--------+-----+--------+-----+--------+
+
+# Q9
+SELECT * FROM P WHERE PNO IN
+(SELECT PNO FROM SPJ WHERE SNO IN
+(SELECT SNO FROM S WHERE CITY = "London"));
+
++-----+-------+-------+--------+--------+
+| PNO | PNAME | COLOR | WEIGHT | CITY   |
++-----+-------+-------+--------+--------+
+| P1  | Nut   | Red   |     12 | London |
+| P6  | Cog   | Red   |     19 | London |
++-----+-------+-------+--------+--------+
+
+# Q10
+SELECT PNO, PNAME FROM P WHERE PNO IN
+(SELECT PNO FROM SPJ WHERE SNO IN
+(SELECT SNO FROM S WHERE CITY = "London")
+AND JNO IN
+(SELECT JNO FROM J WHERE CITY = "London"));
+
++-----+-------+
+| PNO | PNAME |
++-----+-------+
+| P6  | Cog   |
++-----+-------+
+
+# Q11
+SELECT DISTINCT S.CITY AS S_CITY, J.CITY AS J_CITY FROM S,J WHERE
+SNO IN (SELECT SNO FROM SPJ) AND
+JNO IN (SELECT JNO FROM SPJ) AND
+S.CITY <> J.CITY;
+
++--------+--------+
+| S_CITY | J_CITY |
++--------+--------+
+| London | Oslo   |
+| London | Athens |
+| London | Rome   |
+| London | Paris  |
+| Paris  | London |
+| Paris  | Oslo   |
+| Paris  | Athens |
+| Paris  | Rome   |
+| Athens | London |
+| Athens | Oslo   |
+| Athens | Rome   |
+| Athens | Paris  |
++--------+--------+
+
+# Q12
+SELECT DISTINCT PNO, PNAME FROM S,P,J WHERE
+SNO IN (SELECT SNO FROM SPJ) AND
+PNO IN (SELECT PNO FROM SPJ) AND
+S.CITY = J.CITY;
+
++-----+-------+
+| PNO | PNAME |
++-----+-------+
+| P1  | Nut   |
+| P2  | Bolt  |
+| P3  | Screw |
+| P4  | Screw |
+| P5  | Cam   |
+| P6  | Cog   |
++-----+-------+
+
+# Q13
+SELECT DISTINCT S.CITY AS S_CITY, J.* FROM J,S WHERE
+JNO IN (SELECT JNO FROM SPJ) AND
+SNO IN (SELECT SNO FROM SPJ) AND
+S.CITY <> J.CITY;
+
++--------+-----+---------+--------+
+| S_CITY | JNO | JNAME   | CITY   |
++--------+-----+---------+--------+
+| London | J6  | EDS     | Oslo   |
+| London | J4  | Console | Athens |
+| London | J3  | OCR     | Athens |
+| London | J2  | Display | Rome   |
+| London | J1  | Sorter  | Paris  |
+| Paris  | J7  | ARP     | London |
+| Paris  | J6  | EDS     | Oslo   |
+| Paris  | J5  | RAID    | London |
+| Paris  | J4  | Console | Athens |
+| Paris  | J3  | OCR     | Athens |
+| Paris  | J2  | Display | Rome   |
+| Athens | J7  | ARP     | London |
+| Athens | J6  | EDS     | Oslo   |
+| Athens | J5  | RAID    | London |
+| Athens | J2  | Display | Rome   |
+| Athens | J1  | Sorter  | Paris  |
++--------+-----+---------+--------+
+
+# Q14
+SELECT DISTINCT A.PNO AS PNO1, B.PNO AS PNO2, A.SNO FROM
+SPJ AS A CROSS JOIN SPJ AS B WHERE
+A.SNO = B.SNO AND A.PNO <> B.PNO AND A.PNO < B.PNO
+ORDER BY A.SNO;
+
++------+------+-----+
+| PNO1 | PNO2 | SNO |
++------+------+-----+
+| P3   | P5   | S2  |
+| P3   | P4   | S3  |
+| P1   | P2   | S5  |
+| P1   | P3   | S5  |
+| P1   | P4   | S5  |
+| P1   | P5   | S5  |
+| P1   | P6   | S5  |
+| P2   | P3   | S5  |
+| P2   | P4   | S5  |
+| P2   | P5   | S5  |
+| P2   | P6   | S5  |
+| P3   | P4   | S5  |
+| P3   | P5   | S5  |
+| P3   | P6   | S5  |
+| P4   | P5   | S5  |
+| P4   | P6   | S5  |
+| P5   | P6   | S5  |
++------+------+-----+
+
+# Q15
+SELECT COUNT(DISTINCT JNO) FROM SPJ WHERE SNO = "S1";
+
++---------------------+
+| COUNT(DISTINCT JNO) |
++---------------------+
+|                   2 |
++---------------------+
+
+# Q16
+SELECT SUM(ALL QTY) FROM SPJ WHERE SNO = "S1";
+
++--------------+
+| SUM(ALL QTY) |
++--------------+
+|          900 |
++--------------+
+
+# Q17
+SELECT PNO, SUM(QTY) FROM SPJ
+GROUP BY PNO;
+
++-----+----------+
+| PNO | SUM(QTY) |
++-----+----------+
+| P1  |     1000 |
+| P2  |      300 |
+| P3  |     3500 |
+| P4  |     1300 |
+| P5  |     1100 |
+| P6  |     1300 |
++-----+----------+
+
+# Q18
+SELECT PNO, SUM(QTY) FROM SPJ
+GROUP BY PNO
+HAVING SUM(QTY) > 350;
+
++-----+----------+
+| PNO | SUM(QTY) |
++-----+----------+
+| P1  |     1000 |
+| P3  |     3500 |
+| P4  |     1300 |
+| P5  |     1100 |
+| P6  |     1300 |
++-----+----------+
+
+# Q19
+SELECT JNO, JNAME FROM J WHERE JNO IN
+(SELECT JNO FROM SPJ WHERE SNO = "S1");
+
++-----+---------+
+| JNO | JNAME   |
++-----+---------+
+| J1  | Sorter  |
+| J4  | Console |
++-----+---------+
+
+# Q20
+SELECT PNAME, COLOR FROM P WHERE PNO IN
+(SELECT PNO FROM SPJ WHERE SNO = "S1");
+
++-------+-------+
+| PNAME | COLOR |
++-------+-------+
+| Nut   | Red   |
++-------+-------+
+
+# Q21
+SELECT PNO, PNAME FROM P WHERE PNO IN
+(SELECT PNO FROM SPJ WHERE JNO IN
+(SELECT JNO FROM J WHERE CITY = "London"));
+
++-----+-------+
+| PNO | PNAME |
++-----+-------+
+| P3  | Screw |
+| P5  | Cam   |
+| P6  | Cog   |
++-----+-------+
+
+# Q22
+SELECT JNO, JNAME FROM J WHERE JNO IN
+(SELECT JNO FROM SPJ WHERE SNO = "S1");
+
++-----+---------+
+| JNO | JNAME   |
++-----+---------+
+| J1  | Sorter  |
+| J4  | Console |
++-----+---------+
+
+# Q23
+SELECT DISTINCT S.SNO, S.SNAME, P.COLOR FROM S,P WHERE
+SNO IN (SELECT SNO FROM SPJ) AND
+PNO IN (SELECT PNO FROM P WHERE COLOR = "Red");
+
++-----+-------+-------+
+| SNO | SNAME | COLOR |
++-----+-------+-------+
+| S1  | Smith | Red   |
+| S2  | Jones | Red   |
+| S3  | Blake | Red   |
+| S4  | Clark | Red   |
+| S5  | Adams | Red   |
++-----+-------+-------+
+
+# Q24
+SELECT * FROM S WHERE STATUS <
+(SELECT STATUS FROM S WHERE SNO LIKE "S1");
+
++-----+-------+--------+-------+
+| SNO | SNAME | STATUS | CITY  |
++-----+-------+--------+-------+
+| S2  | Jones |     10 | Paris |
++-----+-------+--------+-------+
+
+# Q25
+SELECT JNO,CITY,JNAME FROM J ORDER BY CITY LIMIT 1;
+
++-----+--------+-------+
+| JNO | CITY   | JNAME |
++-----+--------+-------+
+| J3  | Athens | OCR   |
++-----+--------+-------+
+
+# Q27
+SELECT S.SNO, S.SNAME FROM S
+JOIN SPJ ON S.SNO = SPJ.SNO
+WHERE SPJ.PNO = "P1"
+AND QTY > (SELECT AVG(QTY) FROM SPJ);
+
++-----+-------+
+| SNO | SNAME |
++-----+-------+
+| S1  | Smith |
++-----+-------+
+
+# Q28
+SELECT JNO, JNAME FROM J WHERE
+JNO IN (SELECT JNO FROM SPJ WHERE PNO IN 
+(SELECT PNO FROM P WHERE COLOR <> "Red")
+AND SNO IN (SELECT SNO FROM S WHERE CITY <> "London"));
+
++-----+---------+
+| JNO | JNAME   |
++-----+---------+
+| J1  | Sorter  |
+| J2  | Display |
+| J3  | OCR     |
+| J4  | Console |
+| J5  | RAID    |
+| J6  | EDS     |
+| J7  | ARP     |
++-----+---------+
+
+# Q29
+SELECT JNO, JNAME FROM J WHERE JNO IN
+(SELECT JNO FROM SPJ WHERE SNO = "S1");
+
++-----+---------+
+| JNO | JNAME   |
++-----+---------+
+| J1  | Sorter  |
+| J4  | Console |
++-----+---------+
+
+# Q30
+SELECT PNO, PNAME FROM P WHERE PNO IN
+(SELECT PNO FROM SPJ WHERE JNO IN
+(SELECT JNO FROM J WHERE CITY = "London"));
+
++-----+-------+
+| PNO | PNAME |
++-----+-------+
+| P3  | Screw |
+| P5  | Cam   |
+| P6  | Cog   |
++-----+-------+
+
+# Q31
+SELECT DISTINCT SNO FROM SPJ
+GROUP BY SNO
+HAVING COUNT(DISTINCT JNO) =
+(SELECT COUNT(DISTINCT JNO) FROM J);
+
++-----+
+| SNO |
++-----+
+| S2  |
++-----+
+
+# Q33
+SELECT S.CITY FROM SPJ
+JOIN S ON S.SNO = SPJ.SNO
+JOIN P ON P.PNO = SPJ.PNO
+JOIN J ON J.JNO = SPJ.JNO
+WHERE S.CITY = P.CITY
+AND P.CITY = J.CITY;
+
++--------+
+| CITY   |
++--------+
+| London |
++--------+
+
+# Q34
+SELECT PNO, PNAME FROM P WHERE PNO IN
+(SELECT PNO FROM SPJ WHERE SNO IN 
+(SELECT SNO FROM S WHERE CITY = "London") OR
+JNO IN (SELECT JNO FROM J WHERE CITY = "London"));
+
++-----+-------+
+| PNO | PNAME |
++-----+-------+
+| P1  | Nut   |
+| P3  | Screw |
+| P5  | Cam   |
+| P6  | Cog   |
++-----+-------+
+
+# Q35
+SELECT DISTINCT S.SNO, P.PNO FROM
+S,P WHERE (S.SNO, P.PNO)
+NOT IN (SELECT DISTINCT SNO, PNO FROM SPJ);
+
++-----+-----+
+| SNO | PNO |
++-----+-----+
+| S4  | P1  |
+| S3  | P1  |
+| S2  | P1  |
+| S4  | P2  |
+| S3  | P2  |
+| S2  | P2  |
+| S1  | P2  |
+| S4  | P3  |
+| S1  | P3  |
+| S4  | P4  |
+| S2  | P4  |
+| S1  | P4  |
+| S4  | P5  |
+| S3  | P5  |
+| S1  | P5  |
+| S3  | P6  |
+| S2  | P6  |
+| S1  | P6  |
++-----+-----+
+
+# Q36
+SELECT DISTINCT A.SNO AS SX, B.SNO AS SY, A.PNO FROM
+SPJ AS A CROSS JOIN SPJ AS B WHERE
+A.PNO = B.PNO AND A.SNO > B.SNO;
+
++----+----+-----+
+| SX | SY | PNO |
++----+----+-----+
+| S5 | S1 | P1  |
+| S3 | S2 | P3  |
+| S5 | S2 | P3  |
+| S5 | S3 | P3  |
+| S5 | S3 | P4  |
+| S5 | S2 | P5  |
+| S5 | S4 | P6  |
++----+----+-----+
