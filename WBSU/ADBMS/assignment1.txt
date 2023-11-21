@@ -1,0 +1,215 @@
+# CREATING TABLE S
+CREATE TABLE S(
+	SNO VARCHAR(15) PRIMARY KEY UNIQUE NOT NULL,
+	SNAME VARCHAR(45) NOT NULL,
+	STATUS INT NOT NULL,
+	CITY VARCHAR(45) NOT NULL
+);
+
+# INSERTING VALUES INTO TRABLE S
+INSERT INTO S VALUES
+("S1", "Smith", 20, "London"),
+("S2", "Jones", 10, "Paris"),
+("S3", "Blake", 30, "Paris"),
+("S4", "Clark", 20, "London"),
+("S5", "Adams", 30, "Athens");
+
+# SHOWING CONTENTS IN TABLE S
+SELECT * FROM S;
+
++-----+-------+--------+--------+
+| SNO | SNAME | STATUS | CITY   |
++-----+-------+--------+--------+
+| S1  | Smith |     20 | London |
+| S2  | Jones |     10 | Paris  |
+| S3  | Blake |     30 | Paris  |
+| S4  | Clark |     20 | London |
+| S5  | Adams |     30 | Athens |
++-----+-------+--------+--------+
+
+# CREATING TABLE P
+CREATE TABLE P(
+	PNO VARCHAR(15) PRIMARY KEY UNIQUE NOT NULL,
+	PNAME VARCHAR(45) NOT NULL,
+	COLOR VARCHAR(45) NOT NULL,
+	WT INT NOT NULL,
+	CITY VARCHAR(45) NOT NULL
+);
+
+# INSERTING VALUES INTO TABLE P
+INSERT INTO P VALUES
+("P1", "Nut", "Red", 12, "London"),
+("P2", "Bolt", "Green", 17, "Paris"),
+("P3", "Screw", "Blue", 17, "Rome"),
+("P4", "Screw", "Red", 14, "London"),
+("P5", "Cam", "Blue", 12, "Paris"),
+("P6", "Cog", "Red", 19, "London");
+
+# SHOWING CONTENTS IN TABLE P
+SELECT * FROM P;
+
++-----+-------+-------+----+--------+
+| PNO | PNAME | COLOR | WT | CITY   |
++-----+-------+-------+----+--------+
+| P1  | Nut   | Red   | 12 | London |
+| P2  | Bolt  | Green | 17 | Paris  |
+| P3  | Screw | Blue  | 17 | Rome   |
+| P4  | Screw | Red   | 14 | London |
+| P5  | Cam   | Blue  | 12 | Paris  |
+| P6  | Cog   | Red   | 19 | London |
++-----+-------+-------+----+--------+
+
+# CREATING TABLE SP
+CREATE TABLE SP(
+	SNO VARCHAR(15) NOT NULL,
+	PNO VARCHAR(15) NOT NULL,
+	QTY INT NOT NULL,
+	PRIMARY KEY(SNO, PNO),
+	FOREIGN KEY(SNO) REFERENCES S(SNO),
+	FOREIGN KEY(PNO) REFERENCES P(PNO)
+);
+
+# INSERING VALUES INTO TABLE SP
+INSERT INTO SP VALUES
+("S1", "P1", 300),
+("S1", "P2", 200),
+("S1", "P3", 400),
+("S1", "P4", 200),
+("S1", "P5", 100),
+("S1", "P6", 100),
+("S2", "P1", 300),
+("S2", "P2", 400),
+("S3", "P2", 200),
+("S4", "P2", 200),
+("S4", "P4", 300),
+("S4", "P5", 400);
+
+# SHOWING CONTENTS IN TABLE SP
+SELECT * FROM SP;
+
++-----+-----+-----+
+| SNO | PNO | QTY |
++-----+-----+-----+
+| S1  | P1  | 300 |
+| S1  | P2  | 200 |
+| S1  | P3  | 400 |
+| S1  | P4  | 200 |
+| S1  | P5  | 100 |
+| S1  | P6  | 100 |
+| S2  | P1  | 300 |
+| S2  | P2  | 400 |
+| S3  | P2  | 200 |
+| S4  | P2  | 200 |
+| S4  | P4  | 300 |
+| S4  | P5  | 400 |
++-----+-----+-----+
+
+# Q1
+SELECT * FROM P WHERE CITY = "London";
+
++-----+-------+-------+----+--------+
+| PNO | PNAME | COLOR | WT | CITY   |
++-----+-------+-------+----+--------+
+| P1  | Nut   | Red   | 12 | London |
+| P4  | Screw | Red   | 14 | London |
+| P6  | Cog   | Red   | 19 | London |
++-----+-------+-------+----+--------+
+
+# Q2
+SELECT SNO FROM SP WHERE PNO = "P1";
+
++-----+
+| SNO |
++-----+
+| S1  |
+| S2  |
++-----+
+
+# Q3
+SELECT DISTINCT COLOR, CITY FROM P;
+
++-------+--------+
+| COLOR | CITY   |
++-------+--------+
+| Red   | London |
+| Green | Paris  |
+| Blue  | Rome   |
+| Blue  | Paris  |
++-------+--------+
+
+# Q4
+SELECT DISTINCT S.SNO, S.CITY AS S_CITY, P.PNO, P.CITY AS P_CITY FROM S,P,SP WHERE S.CITY=P.CITY;
+
++-----+--------+-----+--------+
+| SNO | S_CITY | PNO | P_CITY |
++-----+--------+-----+--------+
+| S1  | London | P6  | London |
+| S4  | London | P6  | London |
+| S2  | Paris  | P5  | Paris  |
+| S3  | Paris  | P5  | Paris  |
+| S1  | London | P4  | London |
+| S4  | London | P4  | London |
+| S2  | Paris  | P2  | Paris  |
+| S3  | Paris  | P2  | Paris  |
+| S1  | London | P1  | London |
+| S4  | London | P1  | London |
++-----+--------+-----+--------+
+
+# Q5
+SELECT DISTINCT S.SNO, S.CITY AS S_CITY, P.PNO, P.CITY AS P_CITY FROM S,P,SP WHERE S.CITY<>P.CITY;
+
++-----+--------+-----+--------+
+| SNO | S_CITY | PNO | P_CITY |
++-----+--------+-----+--------+
+| S2  | Paris  | P6  | London |
+| S3  | Paris  | P6  | London |
+| S5  | Athens | P6  | London |
+| S1  | London | P5  | Paris  |
+| S4  | London | P5  | Paris  |
+| S5  | Athens | P5  | Paris  |
+| S2  | Paris  | P4  | London |
+| S3  | Paris  | P4  | London |
+| S5  | Athens | P4  | London |
+| S1  | London | P3  | Rome   |
+| S2  | Paris  | P3  | Rome   |
+| S3  | Paris  | P3  | Rome   |
+| S4  | London | P3  | Rome   |
+| S5  | Athens | P3  | Rome   |
+| S1  | London | P2  | Paris  |
+| S4  | London | P2  | Paris  |
+| S5  | Athens | P2  | Paris  |
+| S2  | Paris  | P1  | London |
+| S3  | Paris  | P1  | London |
+| S5  | Athens | P1  | London |
++-----+--------+-----+--------+
+
+# Q6
+SELECT DISTINCT PNO, PNAME FROM P WHERE PNO IN
+(SELECT PNO FROM SP WHERE SNO IN
+(SELECT SNO FROM S WHERE CITY = "London"));
+
++-----+-------+
+| PNO | PNAME |
++-----+-------+
+| P1  | Nut   |
+| P2  | Bolt  |
+| P3  | Screw |
+| P4  | Screw |
+| P5  | Cam   |
+| P6  | Cog   |
++-----+-------+
+
+# Q7
+SELECT SP.SNO, S.CITY AS S_CITY, SP.PNO, P.CITY AS P_CITY FROM S, P, SP
+WHERE SP.SNO = S.SNO AND SP.PNO = P.PNO AND S.CITY <> P.CITY;
+
++-----+--------+-----+--------+
+| SNO | S_CITY | PNO | P_CITY |
++-----+--------+-----+--------+
+| S1  | London | P2  | Paris  |
+| S1  | London | P3  | Rome   |
+| S1  | London | P5  | Paris  |
+| S2  | Paris  | P1  | London |
+| S4  | London | P2  | Paris  |
+| S4  | London | P5  | Paris  |
++-----+--------+-----+--------+
