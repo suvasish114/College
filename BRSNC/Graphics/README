@@ -1,0 +1,7 @@
+QUESTIONS
+
+1. Write a program to implement the DDA line drawing algorithm.
+2. Write a program to implement Bresenham‘s line drawing algorithm.
+3. Write a program to implement a mid-point circle drawing algorithm.
+4. Write a program to clip a line using Cohen and Sutherland line clipping algorithm.
+5. Write a program to apply various 2D transformations as listed below on a triangle with vertices A(100,100), B(500, 100), and C(300, 300) (use homogenous coordinates): translation, rotation, scaling, reflection (about X-axis, Y-axis).
